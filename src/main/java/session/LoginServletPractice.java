@@ -1,6 +1,7 @@
 package session;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -42,8 +43,11 @@ public class LoginServletPractice  extends HttpServlet{
 			resp.sendRedirect("loginSucess.jsp");
 		}else {
 			//tao Rd để chuyển tiếp
-			 RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("login.html");
-			 dispatcher.forward(req, resp);
+			 RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/login.html");
+			 PrintWriter out=resp.getWriter();
+			 out.println("<font color='red'>User name hoac pwd sai roi </font>");
+			 // hiển thị trang login va in ra out trong cung 1 phan hoi duy nhat
+			 dispatcher.include(req, resp);
 		}
 		
 		
